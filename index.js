@@ -99,11 +99,12 @@ function Car(model, milesPerGallon) {
   this.odometer =0;
 }
 Car.prototype.fill=function(gallons){
-if (this.tank < 200){
- return this.tank= this.tank+(gallons);
-}else if(this.tank >= 200){
-  return `tank is full, ${this.model}have ${this.tank}gallon`;
-}
+  this.tank = this.tank + gallons
+// if (this.tank < 200){
+//  return this.tank= this.tank+(gallons);
+// }else if(this.tank >= 200){
+//   return `tank is full, ${this.model}have ${this.tank}gallon`;
+// }
 }
 Car.prototype.toString = function(){
   return `${this.model} has ${this.milesPerGallon}mpg`;
@@ -133,7 +134,7 @@ Baby.prototype.play = function(){
   return `"Playing with ${this.favoriteToy}",`;
 }
 
-const camm = new Baby('camm','1','toy knife');
+const camm = new Baby('camm',1,'toy knife');
 
 console.log(camm.play());
 
@@ -144,9 +145,9 @@ console.log(camm.play());
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
   1. if you do not give context to this, it will be automatically assigned to window
-  2. 
-  3. 
-  4. 
+  2. implicit binding means it is implied when function is invoked it will look to the left of the dot and will see that that is what this implies.
+  3. explicit binding use call , apply, bind to tell this where it is going to be used.
+  4. when this is used in constructor function this refers to the object created by the constructor function.
 */
 
 
