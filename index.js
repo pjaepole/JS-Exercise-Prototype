@@ -39,11 +39,40 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-  
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach =[]; 
 }
 
+Person.prototype.eat= function(edible){
+  if(this.stomach.length <10){
+    this.stomach.push(edible);
+  }
+}
 
+Person.prototype.poop = function(){
+  this.stomach =[];
+}
+
+Person.prototype.toString = function(){
+  return `${this.name}, ${this.age}`;
+
+}
+
+const cam= new Person('Cam', 20);
+console.log(cam.toString());
+
+
+cam.eat('pizza');
+cam.eat('rice');
+cam.eat('taco');
+cam.eat('cake');
+
+console.log(cam.stomach);
+
+cam.poop();
+console.log(cam.stomach);
 
 
 
@@ -63,9 +92,26 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-  
+function Car(model, milesPerGallon) {
+  this.model =model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank =0;
+  this.odometer =0;
 }
+Car.prototype.fill=function(gallons){
+if (this.tank < 200){
+ return this.tank= this.tank+(gallons);
+}else if(this.tank >= 200){
+  return `tank is full, ${this.model}have ${this.tank}gallon`;
+}
+}
+Car.prototype.toString = function(){
+  return `${this.model} has ${this.milesPerGallon}mpg`;
+}
+
+const corolla =new Car('corolla', 40);
+console.log(corolla.toString());
+
 
 
 /*
@@ -75,15 +121,29 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
+function Baby(name,age,favoriteToy) {
+  Person.call(this, name, age);
+  
+  this.favoriteToy = favoriteToy;
  
 }
+
+Baby.prototype =Object.create(Person.prototype);
+Baby.prototype.play = function(){
+  return `"Playing with ${this.favoriteToy}",`;
+}
+
+const camm = new Baby('camm','1','toy knife');
+
+console.log(camm.play());
+
+
 
 
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
+  1. if you do not give context to this, it will be automatically assigned to window
   2. 
   3. 
   4. 
